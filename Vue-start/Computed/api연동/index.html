@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+    <div id="app">
+        <ul>
+            <li v-for="todo in upperTodos"> <!-- 계산된 upperTodos 캐싱 -->
+                {{ todo.title }}
+            </li>            
+        </ul>
+        <ul>
+            <li v-for="todo in upperTodos"> <!-- 반복되는 upperTodos는 캐싱된 데이터 사용 -->
+                {{ todo.title }}
+            </li>            
+        </ul>
+    </div>
+    <script>
+        const App = {
+            data() {
+                return {
+                    todos: []
+                }
+            },
+            computed: {
+                upperTodos() {
+                    return this.todos.map(todo => ({
+                        ...todo,
+                        title: todo.title.toUpperCase()
+                    }))
+                }
+            },
+            created() {
+                fetch('https://jsonplaceholder.typicode.com/todos')
+                    .then(res => res.json())
+                    .then(res => {
+                        console.log(res);
+                        this.todos = res;
+                        // title, id
+                    })
+            }
+        };
+
+        const vm = Vue.createApp(App).mount('#app');
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+    <div id="app">
+        <button @click="capitalize">Capitalize</button>
+        <ul>
+            <li v-for="fruit in fruits">
+                {{ fruit.name }}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        const App = {
+            data() {
+                return {
+                    user: {
+                        name: 'Leon',
+                        age: 23
+                    },
+                    fruits: [
+                        { id: 1, name: 'Apple' },
+                        { id: 2, name: 'Banana' },
+                        { id: 3, name: 'Cherry' }
+                    ]
+                };
+            },
+            watch: {
+                //데이터는 객체 리터럴로 선언해주고 handler 메소드에서 실행할 내용 작성 + deep 속성 사용
+                user: {
+                    handler(newValue, oldValue) {
+                        console.log(newValue, oldValue);
+                    },
+                    deep: true //깊은 데이터까지 감시
+                },
+                fruits: {
+                    handler() {
+                        console.log(this.fruits);
+                    },
+                    deep: true,
+                    immediate: true //데이터가 변경됐을 때 뿐 아니라 준비되면 바로 감시(핸들러 실행)
+                }
+            },
+            methods: {
+                capitalize() {
+                    this.fruits.forEach(fruit => {
+                        fruit.name = fruit.name.toUpperCase();
+                    });
+                }
+            }
+        };
+
+        const vm = Vue.createApp(App).mount('#app');
+    </script>
+</body>
+</html>

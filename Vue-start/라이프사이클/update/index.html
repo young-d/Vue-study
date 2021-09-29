@@ -21,7 +21,7 @@
             beforeUpdate() {
                 //data는 재할당하자마자 바뀌지만
                 console.log('beforeUpdate!', this.msg); //beforeUpdate! Bye?
-                //업데이트 되기 전에는 여전히 뷰에서 렌더링 된 값을 가리킨다
+                //업데이트 되기 전에는 데이터가 아니라 화면에 렌더링 된 값을 가리킨다
                 console.log(document.querySelector('h1').textContent); //Hello Vue!
             },
             updated() {

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+    <div id="app">
+        <h1>{{ fullName }}</h1>
+        <h2>{{ firstName }}</h2>
+        <h2>{{ lastName }}</h2> 
+    </div>
+
+    <script>
+        const App = {
+            data() {
+                return {
+                    firstName: 'Leon',
+                    lastName: 'Miller'
+                };
+            },
+            computed: {
+                fullName: {
+                    get() {
+                        return `${this.firstName} ${this.lastName}`;
+                    },
+                    set(newValue) {
+                        console.log(newValue); //'Jacob Kevin Smith'
+                        const names = newValue.split(' ');
+                        this.firstName = names[0];
+                        this.lastName = names[names.length - 1];
+                    }
+                }
+            },
+            //감시할 데이터가 바뀔 때 실행할 함수(같은 이름으로 설정해준다) -> 선언부에서 사용하는 반응형 데이터만 감시 가능
+            watch: {
+                firstName(newValue, oldValue) {
+                    console.log('watch', this.firstName, newValue, oldValue); 
+                },
+                fullName() {
+                    console.log('watch', this.fullName); 
+                }
+            }
+        };
+
+        const vm = Vue.createApp(App).mount('#app');
+    </script>
+</body>
+</html>
