@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+    <div id="app">
+        <h1>{{ msg }}</h1>
+    </div>
+
+    <script>
+        const App = {
+            data() {
+                return {
+                    msg: 'Hello Vue!'
+                }
+            },
+            beforeCreate() { //vue 애플리케이션 생성전에 동작
+                console.log('beforeCreate!', this.msg); //undefined
+                console.log(document.querySelector('h1')); //null
+            },
+            created() {
+                console.log('created!', this.msg); //Hello Vue!
+                console.log(document.querySelector('h1')); //null
+            },
+            beforeMount() {
+                console.log('beforeMount!', this.msg); //Hello Vue!
+                console.log(document.querySelector('h1')); //null
+            },
+            mounted() { //DOM과 연결된 직후에 동작 (html 구조를 다룰 수 있는 시점)
+                console.log('mounted!', this.msg); //Hello Vue!
+                console.log(document.querySelector('h1')); //<h1>
+            }
+        }
+        
+        const app = Vue.createApp(App);
+        const vm = app.mount('#app');
+    </script>
+</body>
+</html>

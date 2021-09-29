@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+    <div id="app">
+        <h1>{{ msg }}</h1>
+    </div>
+
+    <script>
+        const App = {
+            data() {
+                return {
+                    msg: 'Hello Vue!'
+                }
+            },
+            beforeUpdate() {
+                //data는 재할당하자마자 바뀌지만
+                console.log('beforeUpdate!', this.msg); //beforeUpdate! Bye?
+                //업데이트 되기 전에는 여전히 뷰에서 렌더링 된 값을 가리킨다
+                console.log(document.querySelector('h1').textContent); //Hello Vue!
+            },
+            updated() {
+                console.log('update!', this.msg); //update! Bye?
+                console.log(document.querySelector('h1').textContent); //Bye?
+            },
+        }
+        
+        const app = Vue.createApp(App);
+        const vm = app.mount('#app');
+    </script>
+</body>
+</html>
