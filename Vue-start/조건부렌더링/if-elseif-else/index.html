@@ -9,26 +9,25 @@
 </head>
 <body>
     <div id="app">
-        <h1>{{ msg }}</h1>
+        <h1 v-if="isShow">Hello Vue!</h1>
+        <template v-else-if="[]"> <!-- []는 trueth 값이다 -->
+            <h2>Application..</h2>
+            <p>1234</p>
+            <span>798</span>
+        </template>
+        <h2 v-else>Good Night~!</h2>
     </div>
 
     <script>
         const App = {
             data() {
                 return {
-                    msg: 'Hello Vue!'
+                    isShow: null
                 }
-            },
-            beforeUnmount() {
-                console.log('beforeUnmount!');
-            },
-            unmount() {
-                console.log('unmount!');
             }
-        }
+        };
         
-        const app = Vue.createApp(App);
-        const vm = app.mount('#app');
+        const vm = Vue.createApp(App).mount('#app');
     </script>
 </body>
 </html>

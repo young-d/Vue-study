@@ -9,26 +9,27 @@
 </head>
 <body>
     <div id="app">
-        <h1>{{ msg }}</h1>
+        <h1 
+            :class="[active, title]"
+            @click="changeTitle">Hello Vue!</h1>
     </div>
 
     <script>
         const App = {
             data() {
                 return {
-                    msg: 'Hello Vue!'
+                    active: 'active',
+                    title: 'title'
+                };
+            },
+            methods: {
+                changeTitle() {
+                    this.title = 'title--large';
                 }
-            },
-            beforeUnmount() {
-                console.log('beforeUnmount!');
-            },
-            unmount() {
-                console.log('unmount!');
             }
-        }
-        
-        const app = Vue.createApp(App);
-        const vm = app.mount('#app');
+        };
+
+        const vm = Vue.createApp(App).mount('#app');
     </script>
 </body>
 </html>

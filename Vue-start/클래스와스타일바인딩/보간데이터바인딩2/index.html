@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app">
+        <h1 :style="[titleStyleObject, styleObject]">Hello Vue!</h1> <!-- 중복되는 속성은 가장 마지막 style 객체를 반영 -->
+    </div>
+
+    <script>
+        const App = {
+            data() {
+                return {
+                    styleObject: {
+                        color: 'royalblue',
+                        backgroundColor: 'orange' //Vue가 카멜케이스를 케밥케이스로 바꾸어준다
+                    },
+                    titleStyleObject: {
+                        fonSize: '40px',
+                        fontWeight: 'bold',
+                        color: 'brown'
+                    }
+                };
+            }
+        };
+
+        const vm = Vue.createApp(App).mount('#app');
+    </script>
+</body>
+</html>

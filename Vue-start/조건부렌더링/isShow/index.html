@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <!-- v-cloak은 전역으로 등록해두기 -->
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+
+    <div id="app">
+        <button @click="toggle">Toggle!</button>
+        <!-- v-if는 lazy -> false면 초기렌더링도 하지 않음 (전환비용 높고, 초기렌더링 감소) -->
+        <h1 v-if="isShow">Hello Vue!</h1>
+        <!-- v-show는 false면 초기렌더링은 하되 display:none 처리 (전환비용 낮고, 초기렌더링 증가) -->
+        <h2 v-show="isShow" v-cloak>{{ msg }}</h2> <!-- v-cloak을 함께 사용하면 일시적으로 이중중괄호 구문이 뷰에 보이는 현상을 방지할 수 있다. -->
+    </div>
+
+    <script>
+        const App = {
+            data() {
+                return {
+                    msg: 'Hello Vue!',
+                    isShow: true
+                }
+            },
+            methods: {
+                toggle() {
+                    this.isShow = !this.isShow
+                }
+            }
+        };
+        
+        const vm = Vue.createApp(App).mount('#app');
+    </script>
+</body>
+</html>

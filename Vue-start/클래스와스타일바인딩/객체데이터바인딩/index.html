@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <style>
+        .title {
+            font-size: 60px;
+            color: blue;
+        }
+        .active {
+            color: red;
+        }
+        .small {
+            font-size: 40px;
+        }
+        .title--small {
+            font-size: 40px;
+        }
+        .color--orange {
+            color: orange;
+        }
+    </style>
+
+    <div id="app">
+        <button @click="toggle">Toggle</button>
+        <!-- <h1 :class="{ active: isActive, small: isSmall }" class="title">{{ msg }}</h1> -->
+        <!-- <h1 :class="{ active, 'title--small color--orange': small }" class="title">{{ msg }}</h1> -->
+        <h1 :class="styleObject" class="title">{{ msg }}</h1>
+    </div>
+
+    <script>
+        const App = {
+            data() {
+                return {
+                    msg: 'Hello Vue!',
+                    // isActive: false,
+                    // isSmall: true
+                    active: false,
+                    small: true,
+                };
+            },
+            computed: {
+                styleObject() {
+                    return {
+                        active: this.active,
+                        'title--small color--orange': this.small
+                    }
+                }
+            },
+            methods: {
+                toggle() {
+                    // this.isActive = !this.isActive;
+                    this.active = !this.active;
+                }
+            }
+        };
+
+        const vm = Vue.createApp(App).mount('#app');
+    </script>
+</body>
+</html>
