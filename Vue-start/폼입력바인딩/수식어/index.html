@@ -9,7 +9,12 @@
 </head>
 <body>
     <div id="app">
-        <input v-model.lazy.number="msg" /> <!-- input의 양방향 데이터 바인딩을 change이벤트(엔터키) 발생시점으로 미룬다 -->
+        <!-- 
+        lazy: input의 양방향 데이터 바인딩을 change이벤트(엔터키) 발생시점으로 미룬다
+        number: 데이터에 반영할 값의 타입을 숫자로 만들어준다 
+        trim: 문자의 앞뒤 공백을 제거해준다 -> 공백 차이만 있는 경우 change 이벤트 발생하지 않음
+        -->
+        <input v-model.lazy.number.trim="msg" /> 
         <h1>{{ msg }}</h1>
     </div>
 

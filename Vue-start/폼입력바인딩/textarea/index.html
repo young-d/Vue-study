@@ -11,8 +11,8 @@
     <div id="app">
         <h1>{{ msg }}</h1>
         <textarea v-model="msg" 
-                  @change="log" /> <!--  -->
-        <h1 style="white-space: pre-line;">{{ msg }}</h1>
+                  @change="log" /> <!-- 여러줄의 문자가 어떻게 출력될지? -->
+        <h1 style="white-space: pre-line;">{{ msg }}</h1> <!-- 별도로 줄바꿈 처리를 해주어야 줄바꿈된 상태로 출력이 가능 -->
     </div>
 
     <script>
