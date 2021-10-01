@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <style>
+        .parent {
+            width: 300px;
+            height: 150px;
+            background-color: blue;
+        }
+        .child {
+            width: 100px;
+            height: 80px;
+            background-color: orange;
+        }
+    </style>
+
+    <div id="app">
+        <div class="parent"
+             @click.self="log"> <!-- 실제로 클릭이 발생한 요소에만 이벤트 실행(currentTarget과 target이 같은 요소일 때만 실행) -->
+            <div class="child"></div> 
+        </div>
+    </div>
+
+    <script>
+        const App = {
+            methods: {
+                log(event) {
+                    //currentTarget은 실제이벤트가 걸려 있는 요소, 
+                    //target은 화면상에서 이벤트가 발생한 요소
+                    console.log(event.currentTarget, event.target); 
+                }
+            }
+        };
+        
+        const vm = Vue.createApp(App).mount('#app');
+    </script>
+</body>
+</html>

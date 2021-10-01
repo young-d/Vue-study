@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ msg }}</h1>
+        <input type="text"
+               v-model="msg" /> <!-- v-model을 통한 양방향 데이터 바인딩 -->
+               <!-- :value="msg"
+               @input="msg = $event.target.value" /> input 이벤트를 통한 양방향 데이터 바인딩(한글 실시간 반영하려면 이 방법 사용!) -->
+    </div>
+
+    <script>
+        const App = {
+            data() {
+                return {
+                    msg: 'Hello Vue!'
+                }
+            }
+        };
+        
+        const vm = Vue.createApp(App).mount('#app');
+    </script>
+</body>
+</html>

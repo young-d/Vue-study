@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <style>
+        .parent {
+            width: 300px;
+            height: 150px;
+            background-color: blue;
+        }
+        .child {
+            width: 100px;
+            height: 80px;
+            background-color: orange;
+        }
+    </style>
+
+    <div id="app">
+        <div class="parent"
+             @click.capture="log"> <!-- parent에서도 캡쳐링이 일어나도록 설정 -->
+            <div class="child"
+                 @click.stop="log"></div> <!-- child 이후 버블링 방지 -->
+        </div>
+    </div>
+
+    <script>
+        //인라인이 아닌 선택자를 통해 capture를 추가할 수도 있음
+        window.addEventListener('load', () => {
+            console.log('window!');
+        }, { capture: true }); //window에서 캡쳐링 일어나도록 설정
+        
+        const App = {
+            methods: {
+                log(event) {
+                    console.log(event.currentTarget);
+                }
+            }
+        };
+        
+        const vm = Vue.createApp(App).mount('#app');
+    </script>
+</body>
+</html>

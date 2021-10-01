@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="checkbox" v-model="checked" value="Leon" /> 
+        <input type="checkbox" v-model="checked" value="Mike" /> 
+        <input type="checkbox" v-model="checked" value="Emilly" /> 
+        <input type="checkbox" v-model="checked" value="Hera" /> 
+    </div>
+
+    <script>
+        const App = {
+            data() {
+                return {
+                    checked: [] //배열형태로 checked된 item의 value를 담을 수 있다.
+                }
+            },
+            watch: {
+                checked(newValue) {
+                    console.log(newValue);
+                }
+            }
+        };
+        
+        const vm = Vue.createApp(App).mount('#app');
+    </script>
+</body>
+</html>

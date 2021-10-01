@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+    <div id="app">
+        <input @keydown.alt.arrow-down="log" /> <!-- system key와 함께 사용 가능 -->
+        <input @keyup.meta.arrow-down="log" /> <!-- system key 중 meta 키는 keydown이벤트에서만 동작함(keyup에서는 os가 해당 이벤트를 가로채기 때문인듯?) -->
+        <input @keydown.arrow-down.exact="log" /> <!-- exact를 통해 조합키가 아닌 설정한 해당 키만 눌렀을 때 이벤트 발생 -->
+    </div>
+
+    <script>
+        const App = {
+            methods: {
+                log(e) {
+                    console.log(e);
+                }
+            }
+        };
+        
+        const vm = Vue.createApp(App).mount('#app');
+    </script>
+</body>
+</html>
