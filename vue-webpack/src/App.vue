@@ -1,10 +1,15 @@
 <template>
-    <h1 v-if="msg" class="message" @click="log">{{ msg }}</h1>
-    <Hello />
+  <h1
+    v-if="msg"
+    class="message"
+    @click="log">
+    {{ msg }}
+  </h1>
+  <Hello />
 </template>
 
 <script>
-import Hello from '~/components/Hello';
+import Hello from '~/components/Hello'
 
 export default {
     components: {
@@ -12,7 +17,7 @@ export default {
     },
     data() {
         return {
-            msg: 'Hello Vue SFC dev server!!!'
+            msg: 'Hello Vue SFC!!!'
         }
     }
 }
