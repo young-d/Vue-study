@@ -1,5 +1,5 @@
 <template>
-    <h1>지역 컴포넌트 Hello!</h1>
+  <h1>지역 컴포넌트 Hello!</h1>
 </template>
 
 <style scoped lang="scss">
