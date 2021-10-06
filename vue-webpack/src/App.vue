@@ -1,35 +1,40 @@
 <template>
   <RouterLink to="/">
-    Home
+    go Home
   </RouterLink>
   <RouterLink to="/about">
-    About
+    go About
   </RouterLink>
-  <RouterLink
-    :to="{ 
-      name: 'docsId',
-      params: { id: '7777' },
-      query: { name: 'Leon',
-               age: 85,
-               email: 'leon@abc.com'
-      }}">
-    Documents Id
-  </RouterLink>
-  <button @click="$router.push({ name: 'home' })">
-    Home
+  <button
+    v-if="!isLoggedIn"
+    @click="logIn">
+    Log In
   </button>
-  <button @click="$router.push({ name: '/about' })">
-    About
+  <button
+    v-else
+    @click="logOut">
+    Log Out
   </button>
   <RouterView />
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            msg: 'Hello Vue SFC!!!'
-        }
+    computed: {
+      isLoggedIn() {
+        return this.$store.state.user.isLoggedIn
+      }
+    },
+    created() {
+      this.$store.dispatch('user/initialize')
+    },
+    methods: {
+      logIn() {
+        this.$router.push('/login')
+      },
+      logOut() {
+        this.$store.dispatch('user/logOut')
+      }
     }
 }
 </script>
