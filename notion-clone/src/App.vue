@@ -2,9 +2,9 @@
   <div class="app__inner">
     <LNB />
     <div class="app__page">
-        <div class="page__header"></div>
-        <div class="page__container">
-          <Router-view />
+      <div class="page__header"></div>
+      <div class="page__container">
+        <Router-view />
       </div>
     </div>
   </div>

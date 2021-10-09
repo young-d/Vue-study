@@ -1,17 +1,17 @@
 <template>
-    <nav>
-        <div class="header">
-            <div class="user-profile"></div>
-            Leon's Notion
-        </div>
-        <ul>
-            <WorkspaceItem
-                v-for="workspace in workspaces"
-                :key="workspace.id"
-                :workspace="workspace" />  
-        </ul>
-        <div class="actions"></div>    
-    </nav>
+  <nav>
+    <div class="header">
+      <div class="user-profile"></div>
+      Leon's Notion
+    </div>
+    <ul>
+      <WorkspaceItem
+        v-for="workspace in workspaces"
+        :key="workspace.id"
+        :workspace="workspace" />  
+    </ul>
+    <div class="actions"></div>    
+  </nav>
 </template>
 
 <script>
