@@ -4,51 +4,63 @@ const HtmlPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-    resolve: {
-        extensions: ['.vue', '.js'],
-        alias: {
-            '~': path.resolve(__dirname, 'src')
-        }
+  resolve: {
+    extensions: ['.vue', '.js', 'scss'],
+    alias: {
+      '~': path.resolve(__dirname, 'src'),
     },
-    entry: './src/main.js',
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        clean: true
-    },
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: 'babel-loader'
+  },
+  entry: './src/main.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    clean: true,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      },
+      {
+        test: /\.vue$/,
+        use: 'vue-loader',
+      },
+      {
+        test: /\.s?css$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'postcss-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              additionalData: `
+                                @use "sass:color";
+                                @use "sass:list";
+                                @use "sass:map";
+                                @use "sass:math";
+                                @use "sass:meta";
+                                @use "sass:selector";
+                                @use "sass:string";
+                                @import "~/scss/_variables";
+                                `,
             },
-            {
-                test: /\.vue$/,
-                use: 'vue-loader'
-            },
-            {
-                test: /\.s?css$/,
-                use: [
-                    'vue-style-loader',
-                    'css-loader',
-                    'postcss-loader',
-                    'sass-loader'
-                ]
-            }   
-        ]
-    },
-    plugins: [
-        new VueLoaderPlugin(),
-        new HtmlPlugin({
-            template: './src/index.html'
-        }),
-        new CopyPlugin({
-            patterns: [
-                { from: 'static' }
-            ]
-        })
+          },
+        ],
+      },
     ],
-    devServer: {
-        historyApiFallback: true
-    }
+  },
+  plugins: [
+    new VueLoaderPlugin(),
+    new HtmlPlugin({
+      template: './src/index.html',
+    }),
+    new CopyPlugin({
+      patterns: [{ from: 'static' }],
+    }),
+  ],
+  devServer: {
+    historyApiFallback: true,
+  },
 }
